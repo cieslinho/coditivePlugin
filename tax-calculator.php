@@ -1,6 +1,6 @@
 <?php
 /* Plugin Name: Tax Calculator
-Description: Wtyczka WP - zadanie rekrutacyjne dla firmy Coditive (Wersja bez ACF)
+Description: Wtyczka WP - zadanie rekrutacyjne dla firmy Coditive (Final)
 Version: 1.0
 Author: Cieśla Szymon
 */
@@ -8,8 +8,8 @@ Author: Cieśla Szymon
 // load must used php files
 
 require_once plugin_dir_path(__FILE__) . 'includes/cpt.php';
-require_once plugin_dir_path(__FILE__) . 'includes/shortcode.php';
 require_once plugin_dir_path(__FILE__) . 'includes/functions.php';
+require_once plugin_dir_path(__FILE__) . 'includes/shortcode.php';
 
 // load css and js
 

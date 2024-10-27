@@ -80,10 +80,15 @@
 	}
 
 	&__results {
+		display: none;
 		margin-block: 2em;
 
 		p {
 			text-align: center;
 		}
+	}
+
+	&__results.active {
+		display: block;
 	}
 }

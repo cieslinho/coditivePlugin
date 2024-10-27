@@ -7,6 +7,7 @@ const vatSelect = document.getElementById('vatSelect')
 const resultProductName = document.getElementById('result_product_name')
 const resultGrossPrice = document.getElementById('result_gross_price')
 const resultTaxAmount = document.getElementById('result_tax_amount')
+const results = document.getElementById('results')
 
 const handleValidation = () => {
 	const productName = productNameInput.value.trim()
@@ -44,12 +45,13 @@ const handleValidation = () => {
 		resultGrossPrice.textContent = grossPrice.toFixed(2)
 		resultTaxAmount.textContent = taxAmount.toFixed(2)
 	}
+	results.classList.add('active')
 }
 
 productNameInput.addEventListener('input', handleValidation)
 netPriceInput.addEventListener('input', handleValidation)
 vatSelect.addEventListener('change', handleValidation)
 btn.addEventListener('click', event => {
-	event.preventDefault()
+	// event.preventDefault()
 	handleValidation()
 })

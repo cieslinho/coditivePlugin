@@ -1,4 +1,5 @@
 <?php
+
 function form_shortcode(){
     ob_start();
 
@@ -35,7 +36,7 @@ function form_shortcode(){
                 <input type="text" name="product_currency" id="product_currency" disabled value="PLN"
                     class="form__input form__disabled">
             </div>
-            <!-- <p id="error_product_currency" class="form__error"></p> -->
+      
         </div>
 
 
@@ -55,14 +56,13 @@ function form_shortcode(){
                     <option value="o.o.">o.o.</option>
                 </select>
             </div>
-            <!-- <p id="error_vat_rate" class="form__error"></p> -->
         </div>
 
         <button type="submit" id="btn" class="form__btn">Oblicz</button>
 
     </form>
 
-    <div class="form__results">
+    <div id="results" class="form__results">
         <p class="form__heading">Wyliczone Wartości:</p>
 <div class="form__output">
     <p class="form__text">

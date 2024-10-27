@@ -1,46 +1,40 @@
 <?
 
-function handle_save_calculator_data() {
+function save_calculator_data() {
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'save_calculator_data_nonce')) {
-        wp_die('Nieprawidłowy nonce. Spróbuj ponownie.');
+        wp_die('Nieautoryzowany dostęp');
     }
 
     $product_name = sanitize_text_field($_POST['product_name']);
     $net_price = floatval($_POST['net_price']);
-    $vat_rate = $_POST['vat_rate'];
-
-    if ($vat_rate === 'zw' || $vat_rate === 'np' || $vat_rate === 'o.o.') {
-        $gross_price = $net_price;
-        $tax_amount = 0;
-    } else {
-        $vat_rate_decimal = floatval($vat_rate) / 100;
-        $gross_price = $net_price * (1 + $vat_rate_decimal);
-        $tax_amount = $gross_price - $net_price;
-    }
-
+    $vat_rate = intval($_POST['vat_rate']);
     $user_ip = $_SERVER['REMOTE_ADDR'];
-    $date = current_time('mysql');
+    $submission_date = current_time('mysql');
 
-    $post_id = wp_insert_post(array(
+    $vat_amount = $net_price * ($vat_rate / 100);
+    $gross_price = $net_price + $vat_amount;
+
+    $post_id = wp_insert_post([
         'post_title' => $product_name,
-        'post_type' => 'calculator_entries',
+        'post_type' => 'taxdata',
         'post_status' => 'publish',
-        'meta_input' => array(
+        'meta_input' => [
             'net_price' => $net_price,
+            'vat_rate' => $vat_rate,
+            'vat_amount' => $vat_amount,
             'gross_price' => $gross_price,
-            'tax_amount' => $tax_amount,
             'user_ip' => $user_ip,
-            'submission_date' => $date,
-        ),
-    ));
+            'submission_date' => $submission_date,
+        ],
+    ]);
 
-    if (is_wp_error($post_id)) {
-        wp_die('Wystąpił błąd podczas zapisywania danych. Spróbuj ponownie.');
-    }
 
-    wp_redirect(home_url('/thank-you'));
+    // test debug
+    $meta_data = get_post_meta($post_id);
+    error_log('Meta data: ' . print_r($meta_data, true));
+
+    wp_redirect(home_url('/?success=1'));
     exit;
 }
-
-add_action('admin_post_save_calculator_data', 'handle_save_calculator_data');
-add_action('admin_post_nopriv_save_calculator_data', 'handle_save_calculator_data');
+add_action('admin_post_save_calculator_data', 'save_calculator_data');
+add_action('admin_post_nopriv_save_calculator_data', 'save_calculator_data');

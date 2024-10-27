@@ -1,8 +1,8 @@
 <?php
 function tax_calculator_cpt(){
-    register_post_type('entries', [
-        'labels' => ['Entries',
-        'name' => 'Tax Entries',
+    register_post_type('taxdata', [
+        'labels' => ['Tax Calculator',
+        'name' => 'Tax Calculator',
         'singular_name' => 'Tax Entry',
         'menu_name' => 'Tax Form Data',
         'name_admin_bar' => 'Tax Calculator Entry',
@@ -13,16 +13,17 @@ function tax_calculator_cpt(){
         'all_items' => 'All Tax Calculator Entries', 
         'search_items' => 'Search Tax Calculator Entries', 
         'not_found' => 'No Tax Calculator Entries found', 
-        'not_found_in_trash' => 'No Tax Calculator Eintries found in trash', 
+        'not_found_in_trash' => 'No Tax Calculator Entries found in trash', 
 
         
     ],
     'public' => false,
     'has_archive' => false,
     'show_ui' => true,
-    'supports' => ['title'],
+    'supports' => ['title', 'custom-fields'],
 'menu_position' => 2,
 ]);
 }
 
 add_action('init', 'tax_calculator_cpt');
+

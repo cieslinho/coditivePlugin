@@ -9,7 +9,7 @@ Plugin WordPress służący do obliczania kwoty brutto oraz podatku od kwoty net
   - **Kwota netto** - pole liczbowe
   - **Stawka VAT** - wybór z listy (pole select)
 - Po obliczeniu formularz wyświetla kwotę brutto oraz kwotę podatku.
-- Wyniki są zapisywane w niestandardowym typie posta (CPT) `tax_calculator_entries` z datą wypełnienia i adresem IP użytkownika.
+- Wyniki są zapisywane w niestandardowym typie posta (CPT) `taxdata` z datą wypełnienia i adresem IP użytkownika.
 
 ## Instalacja
 
@@ -19,10 +19,10 @@ Plugin WordPress służący do obliczania kwoty brutto oraz podatku od kwoty net
 
 ## Użycie
 
-1. Dodaj shortcode `[tax_calculator]` do treści strony lub wpisu, aby wyświetlić formularz kalkulacji.
+1. Dodaj shortcode `[form_coditive]` do treści strony lub wpisu, aby wyświetlić formularz kalkulacji.
 2. Po wypełnieniu formularza wynik (kwota brutto i kwota podatku) zostanie automatycznie wyświetlony na stronie.
 
-## Shortcode `[tax_calculator]`
+## Shortcode `[form_coditive]`
 
 ### Pola formularza
 
@@ -33,7 +33,8 @@ Plugin WordPress służący do obliczania kwoty brutto oraz podatku od kwoty net
 
 ### Zapis danych
 
-Po wypełnieniu formularza dane są zapisywane jako wpisy CPT `tax_calculator_entries`, zawierając:
+Po wypełnieniu formularza dane są zapisywane jako wpisy CPT `taxdata`, zawierając:
+
 - Nazwę produktu
 - Kwotę netto
 - Stawkę VAT
@@ -49,5 +50,4 @@ Po wypełnieniu formularza dane są zapisywane jako wpisy CPT `tax_calculator_en
 
 ## Autor
 
-Plugin stworzony jako zadanie rekrutacyjne dla firmy **Coditive**. - sposób bez ACF
-
+Plugin stworzony jako zadanie rekrutacyjne dla firmy **Coditive**.
